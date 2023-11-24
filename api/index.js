@@ -2,7 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js"; // this is using route from user routes and change name from router to userRouter , this is no problem due to same name in both file and aleady export default on module user.route.js
+import authRouter from "./routes/auth.route.js";
 dotenv.config();
+const app = express();
+app.use(express.json()); // for allowing json on database
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -13,7 +16,6 @@ mongoose
     console.log(err);
   });
 
-const app = express();
 app.listen(3000, () => {
   console.log("Listening on port 3000");
 });
@@ -27,3 +29,6 @@ app.listen(3000, () => {
 
 // this is using route from user routes
 app.use("/api/user", userRouter); // in this example we use /api/user mean from folder api subfolder routes we use user.route.js and then userRouter from file user.route.js
+
+// for signup route
+app.use("/api/auth", authRouter);
