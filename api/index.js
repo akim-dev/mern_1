@@ -32,3 +32,14 @@ app.use("/api/user", userRouter); // in this example we use /api/user mean from 
 
 // for signup route
 app.use("/api/auth", authRouter);
+
+// for middleware
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});
