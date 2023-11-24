@@ -34,6 +34,8 @@ export const signin = async (req, res, next) => {
       },
       process.env.JWT_SECRET
     );
+
+    // remove password from response
     const { password: pass, ...others } = validUser._doc;
     res
       .cookie("access_token", token, {
