@@ -35,6 +35,7 @@ export default function Header() {
             <li className=" text-slate-700 hover:underline">SignIn</li>
           </Link>
         </ul>
+        {/* <h3>this is only for testing</h3> */}
       </div>
     </header>
   );
